@@ -78,12 +78,12 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 - [x] Fade in/out suave ao ligar/desligar um canal (ramp 300ms)
 
 ### Fase 3 — UI do Mixer
-- [ ] `SoundChannel` — card com ícone, nome, slider de volume e botão on/off
-- [ ] `SoundMixer` — grid responsivo de canais ativos (até 6 simultâneos no MVP)
-- [ ] `SoundPicker` — drawer com catálogo completo para adicionar canal
-- [ ] Indicador visual de canal tocando (pulse animation)
-- [ ] Volume master com slider no header
-- [ ] Estado vazio amigável ("Adicione um som para começar")
+- [x] `SoundChannel` — card com ícone, nome, slider de volume e botão on/off
+- [x] `SoundMixer` — grid responsivo de canais ativos (até 6 simultâneos no MVP)
+- [x] `SoundPicker` — drawer com catálogo completo para adicionar canal
+- [x] Indicador visual de canal tocando (pulse animation)
+- [x] Volume master com slider no header
+- [x] Estado vazio amigável ("Adicione um som para começar")
 
 ### Fase 4 — Sistema de Presets
 - [ ] `usePresets` — `save`, `load`, `delete`, `list` via localStorage
