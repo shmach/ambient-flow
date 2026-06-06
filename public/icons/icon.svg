@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1a1a2e"/>
+  <circle cx="256" cy="256" r="140" fill="#7c3aed"/>
+  <!-- Sound wave arcs -->
+  <path d="M180 256 Q220 196 256 256 Q292 316 320 256" fill="none" stroke="white" stroke-width="18" stroke-linecap="round"/>
+  <path d="M140 256 Q198 166 256 256 Q314 346 360 256" fill="none" stroke="white" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+  <circle cx="256" cy="256" r="18" fill="white"/>
+</svg>
