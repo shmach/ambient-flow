@@ -86,12 +86,12 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 - [x] Estado vazio amigável ("Adicione um som para começar")
 
 ### Fase 4 — Sistema de Presets
-- [ ] `usePresets` — `save`, `load`, `delete`, `list` via localStorage
-- [ ] `PresetBar` — chips horizontais com presets salvos; clique carrega o preset
-- [ ] `PresetSaveModal` — modal com input de nome + botão salvar
-- [ ] Preset padrão "Focus" pré-carregado na primeira visita (chuva leve + ruído branco)
-- [ ] Preset padrão "Sleep" pré-carregado (ondas do mar + chuva leve)
-- [ ] Confirmação antes de deletar preset
+- [x] `usePresets` — `save`, `load`, `delete`, `list` via localStorage
+- [x] `PresetBar` — chips horizontais com presets salvos; clique carrega o preset
+- [x] `PresetSaveModal` — modal com input de nome + botão salvar
+- [x] Preset padrão "Focus" pré-carregado na primeira visita (chuva leve + ruído branco)
+- [x] Preset padrão "Sleep" pré-carregado (ondas do mar + chuva leve)
+- [x] Confirmação antes de deletar preset
 
 ### Fase 5 — Compartilhamento por URL
 - [ ] Serializar estado do mixer em query string (`?s=rain-light:0.6,campfire:0.4`)

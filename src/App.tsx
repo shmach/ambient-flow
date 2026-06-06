@@ -1,14 +1,31 @@
 import { useState } from 'react'
 import { useAudioEngine } from './hooks/useAudioEngine'
+import { usePresets, type Preset } from './hooks/usePresets'
 import { useMixerStore } from './store/mixer'
 import { SoundMixer } from './components/SoundMixer'
 import { SoundPicker } from './components/SoundPicker'
+import { PresetBar } from './components/PresetBar'
+import { PresetSaveModal } from './components/PresetSaveModal'
 
 export default function App() {
   const { ensureContext }  = useAudioEngine()
-  const [pickerOpen, setPickerOpen] = useState(false)
+  const { presets, save: savePreset, remove: removePreset } = usePresets()
+
+  const [pickerOpen,    setPickerOpen]    = useState(false)
+  const [saveModalOpen, setSaveModalOpen] = useState(false)
+
   const masterVolume    = useMixerStore(s => s.masterVolume)
   const setMasterVolume = useMixerStore(s => s.setMasterVolume)
+  const channels        = useMixerStore(s => s.channels)
+  const loadPreset      = useMixerStore(s => s.loadPreset)
+
+  const handleLoadPreset = (preset: Preset) => {
+    void ensureContext().then(() => loadPreset(preset.channels))
+  }
+
+  const handleSavePreset = (name: string) => {
+    savePreset(name, channels.map(c => ({ soundId: c.soundId, volume: c.volume })))
+  }
 
   return (
     <div className="min-h-dvh flex flex-col">
@@ -40,10 +57,17 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-2xl mx-auto px-4 py-6">
+      <main className="flex-1 w-full max-w-2xl mx-auto px-4 py-6 flex flex-col gap-8">
         <SoundMixer
           ensureContext={ensureContext}
           onOpenPicker={() => setPickerOpen(true)}
+        />
+
+        <PresetBar
+          presets={presets}
+          onLoad={handleLoadPreset}
+          onDelete={removePreset}
+          onSave={() => setSaveModalOpen(true)}
         />
       </main>
 
@@ -51,6 +75,12 @@ export default function App() {
         open={pickerOpen}
         onClose={() => setPickerOpen(false)}
         ensureContext={ensureContext}
+      />
+
+      <PresetSaveModal
+        open={saveModalOpen}
+        onClose={() => setSaveModalOpen(false)}
+        onSave={handleSavePreset}
       />
     </div>
   )
