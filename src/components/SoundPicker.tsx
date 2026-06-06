@@ -1,5 +1,6 @@
 import { SOUNDS, type SoundCategory } from '../lib/sounds'
 import { useMixerStore } from '../store/mixer'
+import { SoundIcon } from './SoundIcon'
 
 const CATEGORIES: SoundCategory[] = ['Natureza', 'Aconchego', 'Urbano', 'Foco']
 
@@ -74,7 +75,7 @@ export function SoundPicker({ open, onClose, ensureContext }: Props) {
                           : 'bg-white/5 text-slate-200 border-transparent hover:bg-white/10'
                       }`}
                     >
-                      <span className="text-2xl leading-none select-none">{sound.emoji}</span>
+                      <SoundIcon soundId={sound.id} className="w-6 h-6 shrink-0" />
                       <span className="text-sm font-medium flex-1">{sound.name}</span>
                       {isActive && <span className="text-xs shrink-0">✓</span>}
                     </button>

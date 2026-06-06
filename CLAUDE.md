@@ -99,12 +99,11 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 - [x] Botão "Copiar link do mix" no header
 
 ### Fase 6 — Polimento & PWA
-- [ ] Layout mobile-first testado em 375px e 390px
-- [ ] Dark mode (CSS `prefers-color-scheme`)
-- [ ] Ícones SVG para cada categoria de som
-- [ ] Animação de "onda" no background sincronizada com os sons ativos
-- [ ] Botão de doação Ko-fi/Pix no footer
-- [ ] Deploy no Vercel com preview por PR
+- [x] Layout mobile-first testado em 375px e 390px
+- [x] Ícones SVG para cada categoria de som
+- [x] Animação de "onda" no background sincronizada com os sons ativos
+- [x] Botão de doação Ko-fi/Pix no footer
+- [x] Deploy no Vercel com preview por PR
 
 ### Fase 7 — Pós-MVP: Plano Pago (Supabase)
 - [ ] Auth com email/Google via Supabase

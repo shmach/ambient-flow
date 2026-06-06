@@ -22,3 +22,37 @@ body {
 #root {
   min-height: 100dvh;
 }
+
+/* Wave background animations */
+@keyframes wave-shift-1 {
+  0%, 100% { d: path("M0,160 C360,240 720,80 1080,160 C1260,200 1380,140 1440,160 L1440,320 L0,320 Z"); }
+  50%       { d: path("M0,180 C360,100 720,260 1080,180 C1260,140 1380,200 1440,180 L1440,320 L0,320 Z"); }
+}
+
+@keyframes wave-shift-2 {
+  0%, 100% { d: path("M0,200 C240,160 480,240 720,200 C960,160 1200,240 1440,200 L1440,320 L0,320 Z"); }
+  50%       { d: path("M0,220 C240,260 480,180 720,220 C960,260 1200,180 1440,220 L1440,320 L0,320 Z"); }
+}
+
+@keyframes wave-shift-3 {
+  0%, 100% { d: path("M0,240 C180,220 360,260 540,240 C720,220 900,260 1080,240 C1260,220 1380,260 1440,240 L1440,320 L0,320 Z"); }
+  50%       { d: path("M0,250 C180,270 360,230 540,250 C720,270 900,230 1080,250 C1260,270 1380,230 1440,250 L1440,320 L0,320 Z"); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+.wave-path {
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.wave-1 { animation-name: wave-shift-1; animation-duration: 12s; }
+.wave-2 { animation-name: wave-shift-2; animation-duration: 9s;  animation-delay: -3s; }
+.wave-3 { animation-name: wave-shift-3; animation-duration: 7s;  animation-delay: -1.5s; }
+
+.wave-glow {
+  animation: glow-pulse 6s ease-in-out infinite;
+}

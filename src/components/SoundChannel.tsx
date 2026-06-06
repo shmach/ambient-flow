@@ -1,5 +1,6 @@
 import { useMixerStore } from '../store/mixer'
 import { SOUNDS_BY_ID } from '../lib/sounds'
+import { SoundIcon } from './SoundIcon'
 
 interface Props {
   soundId: string
@@ -31,7 +32,9 @@ export function SoundChannel({ soundId, ensureContext }: Props) {
         <span className="absolute top-3 right-3 w-2 h-2 rounded-full bg-primary animate-pulse" />
       )}
 
-      <div className="text-4xl select-none leading-none mt-1">{sound.emoji}</div>
+      <div className={`mt-1 transition-colors ${channel.playing ? 'text-primary' : 'text-slate-400'}`}>
+        <SoundIcon soundId={soundId} className="w-10 h-10" />
+      </div>
 
       <span className="text-sm font-semibold text-white text-center leading-tight">
         {sound.name}
