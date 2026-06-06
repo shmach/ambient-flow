@@ -17,10 +17,11 @@ export function useAudioEngine() {
   const loadingRef     = useRef<Set<string>>(new Set())
   const prevRef        = useRef<Channel[]>([])
 
-  const masterVolumeRef = useRef(useMixerStore.getState().masterVolume)
-  const masterVolume    = useMixerStore(s => s.masterVolume)
-  const channels        = useMixerStore(s => s.channels)
-  const setReady        = useMixerStore(s => s.setAudioContextReady)
+  const masterVolumeRef    = useRef(useMixerStore.getState().masterVolume)
+  const masterVolume       = useMixerStore(s => s.masterVolume)
+  const channels           = useMixerStore(s => s.channels)
+  const setReady           = useMixerStore(s => s.setAudioContextReady)
+  const audioContextReady  = useMixerStore(s => s.audioContextReady)
 
   useEffect(() => { masterVolumeRef.current = masterVolume }, [masterVolume])
 
@@ -149,6 +150,18 @@ export function useAudioEngine() {
 
     prevRef.current = channels
   }, [channels, startChannel, stopChannel])
+
+  // When context first becomes ready, start any channels already marked as playing
+  // (happens when mixer state is restored from a shared URL before first interaction)
+  useEffect(() => {
+    if (!audioContextReady) return
+    const { channels: current } = useMixerStore.getState()
+    for (const ch of current) {
+      if (ch.playing && !channelsRef.current.has(ch.soundId)) {
+        void startChannel(ch)
+      }
+    }
+  }, [audioContextReady, startChannel])
 
   // Sync master volume
   useEffect(() => {

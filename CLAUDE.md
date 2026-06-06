@@ -94,9 +94,9 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 - [x] Confirmação antes de deletar preset
 
 ### Fase 5 — Compartilhamento por URL
-- [ ] Serializar estado do mixer em query string (`?s=rain-light:0.6,campfire:0.4`)
-- [ ] Ao abrir URL com query string, restaurar mixer automaticamente
-- [ ] Botão "Copiar link do mix" no header
+- [x] Serializar estado do mixer em query string (`?s=rain-light:0.6,campfire:0.4`)
+- [x] Ao abrir URL com query string, restaurar mixer automaticamente
+- [x] Botão "Copiar link do mix" no header
 
 ### Fase 6 — Polimento & PWA
 - [ ] Layout mobile-first testado em 375px e 390px
