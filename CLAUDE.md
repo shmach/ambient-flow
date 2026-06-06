@@ -64,10 +64,10 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 ## Roadmap por Feature
 
 ### Fase 1 — Fundação
-- [ ] Scaffold com Vite + React + TypeScript + Tailwind v4
-- [ ] Configurar PWA manifest (nome, ícones, `display: standalone`)
-- [ ] Service worker com Workbox para cache offline dos áudios
-- [ ] CI básico: lint (ESLint) + type-check no push
+- [x] Scaffold com Vite + React + TypeScript + Tailwind v4
+- [x] Configurar PWA manifest (nome, ícones, `display: standalone`)
+- [x] Service worker com Workbox para cache offline dos áudios
+- [x] CI básico: lint (ESLint) + type-check no push
 
 ### Fase 2 — Engine de Áudio
 - [ ] `useAudioEngine` — criar `AudioContext` singleton
