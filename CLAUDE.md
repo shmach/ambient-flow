@@ -70,12 +70,12 @@ Arquivos `.mp3` hospedados no Cloudflare R2, carregados via `fetch` e decodifica
 - [x] CI básico: lint (ESLint) + type-check no push
 
 ### Fase 2 — Engine de Áudio
-- [ ] `useAudioEngine` — criar `AudioContext` singleton
-- [ ] Carregar áudio via `fetch` + `decodeAudioData` com cache local
-- [ ] Play / pause / loop por canal (`AudioBufferSourceNode`)
-- [ ] `GainNode` por canal com controle de volume (0–1)
-- [ ] `GainNode` master para volume global
-- [ ] Fade in/out suave ao ligar/desligar um canal (ramp 300ms)
+- [x] `useAudioEngine` — criar `AudioContext` singleton
+- [x] Carregar áudio via `fetch` + `decodeAudioData` com cache local
+- [x] Play / pause / loop por canal (`AudioBufferSourceNode`)
+- [x] `GainNode` por canal com controle de volume (0–1)
+- [x] `GainNode` master para volume global
+- [x] Fade in/out suave ao ligar/desligar um canal (ramp 300ms)
 
 ### Fase 3 — UI do Mixer
 - [ ] `SoundChannel` — card com ícone, nome, slider de volume e botão on/off

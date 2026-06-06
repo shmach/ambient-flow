@@ -1,6 +1,13 @@
+import { useAudioEngine } from './hooks/useAudioEngine'
+
 export default function App() {
+  const { ensureContext } = useAudioEngine()
+
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center p-4">
+    <div
+      className="min-h-dvh flex flex-col items-center justify-center p-4"
+      onClick={() => { void ensureContext() }}
+    >
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold text-white mb-2">AmbientFlow</h1>
         <p className="text-slate-400 text-lg">
