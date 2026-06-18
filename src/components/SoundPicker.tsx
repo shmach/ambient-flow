@@ -1,3 +1,4 @@
+import { X, Check } from 'lucide-react'
 import { SOUNDS, type SoundCategory } from '../lib/sounds'
 import { useMixerStore } from '../store/mixer'
 import { SoundIcon } from './SoundIcon'
@@ -26,23 +27,26 @@ export function SoundPicker({ open, onClose, ensureContext }: Props) {
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
+        className="fixed inset-0 bg-black/65 z-40 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      <div className="fixed inset-x-0 bottom-0 z-50 bg-surface-raised rounded-t-3xl max-h-[80vh] flex flex-col">
+      <div
+        className="fixed inset-x-0 bottom-0 z-50 rounded-t-3xl max-h-[80vh] flex flex-col border-t border-white/8"
+        style={{ background: '#101020' }}
+      >
         <div className="flex justify-center pt-3 pb-1 shrink-0">
-          <div className="w-10 h-1 rounded-full bg-white/20" />
+          <div className="w-10 h-1 rounded-full bg-white/15" />
         </div>
 
         <div className="flex items-center justify-between px-5 py-3 shrink-0">
           <h2 className="text-lg font-semibold text-white">Adicionar som</h2>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-slate-400 hover:bg-white/20 transition-colors text-xl leading-none"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/8 text-slate-400 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
             aria-label="Fechar"
           >
-            ×
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -67,17 +71,30 @@ export function SoundPicker({ open, onClose, ensureContext }: Props) {
                       key={sound.id}
                       disabled={disabled}
                       onClick={() => handleAdd(sound.id)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors border ${
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 border cursor-pointer ${
                         isActive
-                          ? 'bg-primary/20 text-primary border-primary/30 cursor-default'
+                          ? 'text-primary border-primary/30'
                           : disabled
-                          ? 'bg-white/5 text-slate-600 border-transparent cursor-not-allowed'
-                          : 'bg-white/5 text-slate-200 border-transparent hover:bg-white/10'
+                          ? 'text-slate-600 border-transparent cursor-not-allowed'
+                          : 'text-slate-200 border-transparent hover:border-white/10'
                       }`}
+                      style={isActive
+                        ? { background: 'rgba(124,58,237,0.12)' }
+                        : disabled
+                        ? { background: 'rgba(255,255,255,0.03)' }
+                        : { background: 'rgba(255,255,255,0.04)' }
+                      }
+                      onMouseEnter={e => {
+                        if (!disabled) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)'
+                      }}
+                      onMouseLeave={e => {
+                        if (!disabled && !isActive) (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.04)'
+                        if (isActive) (e.currentTarget as HTMLElement).style.background = 'rgba(124,58,237,0.12)'
+                      }}
                     >
                       <SoundIcon soundId={sound.id} className="w-6 h-6 shrink-0" />
                       <span className="text-sm font-medium flex-1">{sound.name}</span>
-                      {isActive && <span className="text-xs shrink-0">✓</span>}
+                      {isActive && <Check className="w-3.5 h-3.5 shrink-0" />}
                     </button>
                   )
                 })}

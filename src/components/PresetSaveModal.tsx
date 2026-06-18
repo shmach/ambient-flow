@@ -36,7 +36,9 @@ export function PresetSaveModal({ open, onClose, onSave }: Props) {
         onClick={onClose}
       />
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-surface-raised rounded-2xl p-6 w-full max-w-sm border border-white/10 shadow-xl">
+        <div className="rounded-2xl p-6 w-full max-w-sm border border-white/10 shadow-2xl"
+          style={{ background: '#101020', boxShadow: '0 25px 60px rgba(0,0,0,0.6), 0 0 40px rgba(124,58,237,0.06)' }}
+        >
           <h2 className="text-lg font-semibold text-white mb-4">Salvar preset</h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">

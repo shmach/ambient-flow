@@ -1,3 +1,4 @@
+import { X } from 'lucide-react'
 import { useMixerStore } from '../store/mixer'
 import { type Preset } from '../hooks/usePresets'
 
@@ -27,7 +28,7 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
         <button
           onClick={onSave}
           disabled={!hasChannels}
-          className="text-xs px-3 py-1.5 rounded-lg bg-white/10 text-slate-300 hover:bg-white/20 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+          className="text-xs px-3 py-1.5 rounded-lg bg-white/8 text-slate-300 hover:bg-white/14 transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-white/6 hover:border-white/12"
         >
           + Salvar mix
         </button>
@@ -44,15 +45,16 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
               tabIndex={0}
               onClick={() => onLoad(preset)}
               onKeyDown={e => e.key === 'Enter' && onLoad(preset)}
-              className="flex items-center gap-1 shrink-0 rounded-full bg-white/10 hover:bg-white/15 transition-colors pl-3 pr-1 py-1.5 cursor-pointer select-none"
+              className="flex items-center gap-1 shrink-0 rounded-full hover:bg-white/12 transition-colors pl-3.5 pr-1.5 py-1.5 cursor-pointer select-none border border-white/8"
+              style={{ background: 'rgba(255,255,255,0.07)' }}
             >
-              <span className="text-sm text-slate-200 leading-none">{preset.name}</span>
+              <span className="text-sm text-slate-200 leading-none font-medium">{preset.name}</span>
               <button
                 onClick={e => handleDelete(e, preset)}
-                className="w-5 h-5 ml-0.5 flex items-center justify-center rounded-full text-slate-500 hover:bg-red-900/50 hover:text-red-400 transition-colors text-base leading-none"
+                className="w-5 h-5 ml-0.5 flex items-center justify-center rounded-full text-slate-500 hover:bg-red-900/50 hover:text-red-400 transition-colors cursor-pointer"
                 aria-label={`Remover preset ${preset.name}`}
               >
-                ×
+                <X className="w-3 h-3" />
               </button>
             </div>
           ))}

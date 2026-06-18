@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Volume2, Link2, Check, Plus, Coffee, Zap } from 'lucide-react'
 import { useAudioEngine } from './hooks/useAudioEngine'
 import { usePresets, type Preset } from './hooks/usePresets'
 import { useMixerStore } from './store/mixer'
@@ -53,11 +54,20 @@ export default function App() {
     <div className="min-h-dvh flex flex-col relative">
       <WaveBackground active={waveActive} intensity={waveIntensity} />
 
-      <header className="sticky top-0 z-30 bg-surface/90 backdrop-blur border-b border-white/5 px-4 py-3">
+      <header className="sticky top-0 z-30 backdrop-blur-md border-b border-white/5 px-4 py-3"
+        style={{ background: 'rgba(11,11,22,0.85)' }}
+      >
         <div className="max-w-2xl mx-auto flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
           {/* Row 1: title + action buttons */}
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold text-white flex-1 sm:flex-none sm:shrink-0">
+            <h1 className="text-xl font-bold flex-1 sm:flex-none sm:shrink-0"
+              style={{
+                background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
               AmbientFlow
             </h1>
             <div className="flex items-center gap-2 ml-auto sm:hidden">
@@ -65,25 +75,29 @@ export default function App() {
                 onClick={() => { void handleCopyLink() }}
                 disabled={channels.length === 0}
                 title="Copiar link do mix"
-                className={`shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${copied
-                  ? 'bg-green-600/30 text-green-400'
-                  : 'bg-white/10 text-slate-300 hover:bg-white/20'
+                className={`shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer ${copied
+                  ? 'bg-green-600/20 text-green-400 border border-green-500/30'
+                  : 'bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8'
                   }`}
               >
-                {copied ? '✓' : '🔗'}
+                {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
               </button>
               <button
                 onClick={() => setPickerOpen(true)}
-                className="shrink-0 px-3 py-1.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                className="shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
+                style={{ background: '#7c3aed', color: '#fff' }}
+                onMouseEnter={e => (e.currentTarget.style.background = '#6d28d9')}
+                onMouseLeave={e => (e.currentTarget.style.background = '#7c3aed')}
               >
-                + Som
+                <Plus className="w-4 h-4" />
+                Som
               </button>
             </div>
           </div>
 
           {/* Row 2 on mobile: volume slider full width */}
-          <div className="flex items-center gap-2 sm:flex-1 sm:min-w-0">
-            <span className="text-slate-500 text-base shrink-0" aria-hidden>🔊</span>
+          <div className="flex items-center gap-2.5 sm:flex-1 sm:min-w-0">
+            <Volume2 className="w-4 h-4 text-slate-500 shrink-0" aria-hidden />
             <input
               type="range"
               min={0}
@@ -103,18 +117,26 @@ export default function App() {
               onClick={() => { void handleCopyLink() }}
               disabled={channels.length === 0}
               title="Copiar link do mix"
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${copied
-                ? 'bg-green-600/30 text-green-400'
-                : 'bg-white/10 text-slate-300 hover:bg-white/20'
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer ${copied
+                ? 'bg-green-600/20 text-green-400 border border-green-500/30'
+                : 'bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8'
                 }`}
             >
-              {copied ? '✓ Copiado' : '🔗 Link'}
+              {copied ? (
+                <><Check className="w-4 h-4" /> Copiado</>
+              ) : (
+                <><Link2 className="w-4 h-4" /> Link</>
+              )}
             </button>
             <button
               onClick={() => setPickerOpen(true)}
-              className="px-4 py-1.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+              className="px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1.5 cursor-pointer"
+              style={{ background: '#7c3aed', color: '#fff' }}
+              onMouseEnter={e => (e.currentTarget.style.background = '#6d28d9')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#7c3aed')}
             >
-              + Som
+              <Plus className="w-4 h-4" />
+              Som
             </button>
           </div>
         </div>
@@ -136,24 +158,24 @@ export default function App() {
 
       <footer className="relative z-10 border-t border-white/5 py-5 px-4">
         <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
-          <span>Feito com 🎧 para sessões de foco e relaxamento</span>
+          <span>Feito para sessões de foco e relaxamento</span>
           <div className="flex items-center gap-3">
             <a
               href="https://ko-fi.com/ambientflow"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
             >
-              <span>☕</span>
+              <Coffee className="w-4 h-4" />
               <span>Ko-fi</span>
             </a>
             <a
               href="https://nubank.com.br/cobrar/pix/ambientflow"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
             >
-              <span>⚡</span>
+              <Zap className="w-4 h-4" />
               <span>Pix</span>
             </a>
           </div>
