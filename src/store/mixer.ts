@@ -17,6 +17,8 @@ interface MixerStore {
   setMasterVolume: (volume: number) => void
   setAudioContextReady: (ready: boolean) => void
   loadPreset: (channels: { soundId: string; volume: number }[]) => void
+  stopAll: () => void
+  startAll: () => void
 }
 
 const MAX_CHANNELS = 6
@@ -61,5 +63,13 @@ export const useMixerStore = create<MixerStore>((set, get) => ({
     set({
       channels: channels.map(c => ({ soundId: c.soundId, volume: c.volume, playing: true })),
     })
+  },
+
+  stopAll: () => {
+    set(state => ({ channels: state.channels.map(c => ({ ...c, playing: false })) }))
+  },
+
+  startAll: () => {
+    set(state => ({ channels: state.channels.map(c => ({ ...c, playing: true })) }))
   },
 }))

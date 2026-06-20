@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Volume2, Link2, Check, Plus, Coffee, Zap } from 'lucide-react'
+import { Volume2, Link2, Check, Plus, Coffee, Zap, Play, Square } from 'lucide-react'
 import { useAudioEngine } from './hooks/useAudioEngine'
 import { usePresets, type Preset } from './hooks/usePresets'
 import { useMixerStore } from './store/mixer'
@@ -23,6 +23,8 @@ export default function App() {
   const setMasterVolume = useMixerStore(s => s.setMasterVolume)
   const channels = useMixerStore(s => s.channels)
   const loadPreset = useMixerStore(s => s.loadPreset)
+  const stopAll = useMixerStore(s => s.stopAll)
+  const startAll = useMixerStore(s => s.startAll)
 
   const playingCount = channels.filter(c => c.playing).length
   const waveActive = playingCount > 0
@@ -72,6 +74,22 @@ export default function App() {
             </h1>
             <div className="flex items-center gap-2 ml-auto sm:hidden">
               <button
+                onClick={() => void ensureContext().then(startAll)}
+                disabled={channels.length === 0 || playingCount === channels.length}
+                title="Iniciar todos"
+                className="shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
+              >
+                <Play className="w-4 h-4" />
+              </button>
+              <button
+                onClick={stopAll}
+                disabled={playingCount === 0}
+                title="Parar todos"
+                className="shrink-0 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
+              >
+                <Square className="w-4 h-4" />
+              </button>
+              <button
                 onClick={() => { void handleCopyLink() }}
                 disabled={channels.length === 0}
                 title="Copiar link do mix"
@@ -111,8 +129,26 @@ export default function App() {
             />
           </div>
 
-          {/* Desktop-only: copy link + add button */}
+          {/* Desktop-only: playback controls + copy link + add button */}
           <div className="hidden sm:flex items-center gap-2 shrink-0">
+            <button
+              onClick={() => void ensureContext().then(startAll)}
+              disabled={channels.length === 0 || playingCount === channels.length}
+              title="Iniciar todos"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
+            >
+              <Play className="w-4 h-4" />
+              Play
+            </button>
+            <button
+              onClick={stopAll}
+              disabled={playingCount === 0}
+              title="Parar todos"
+              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
+            >
+              <Square className="w-4 h-4" />
+              Stop
+            </button>
             <button
               onClick={() => { void handleCopyLink() }}
               disabled={channels.length === 0}
