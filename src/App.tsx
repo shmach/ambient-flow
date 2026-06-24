@@ -62,15 +62,22 @@ export default function App() {
         <div className="max-w-2xl mx-auto flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
           {/* Row 1: title + action buttons */}
           <div className="flex items-center gap-2">
-            <h1 className="text-xl font-bold flex-1 sm:flex-none sm:shrink-0"
-              style={{
-                background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              AmbientFlow
+            <h1 className="flex items-center gap-2 flex-1 sm:flex-none sm:shrink-0">
+              <img
+                src="/icons/icon-48.png"
+                alt="AmbientFlow logo"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-contain"
+              />
+              <span className="text-xl font-bold hidden md:block"
+                style={{
+                  background: 'linear-gradient(135deg, #a78bfa 0%, #818cf8 50%, #60a5fa 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                AmbientFlow
+              </span>
             </h1>
             <div className="flex items-center gap-2 ml-auto sm:hidden">
               <button
