@@ -102,7 +102,7 @@ export default function App() {
             <button
               onClick={() => void ensureContext().then(startAll)}
               disabled={channels.length === 0 || playingCount === channels.length}
-              title="Iniciar todos"
+              title="Play all"
               className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
             >
               <Play className="w-4 h-4" />
@@ -111,7 +111,7 @@ export default function App() {
             <button
               onClick={stopAll}
               disabled={playingCount === 0}
-              title="Parar todos"
+              title="Stop all"
               className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8"
             >
               <Square className="w-4 h-4" />
@@ -120,14 +120,14 @@ export default function App() {
             <button
               onClick={() => { void handleCopyLink() }}
               disabled={channels.length === 0}
-              title="Copiar link do mix"
+              title="Copy mix link"
               className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 cursor-pointer ${copied
                 ? 'bg-green-600/20 text-green-400 border border-green-500/30'
                 : 'bg-white/8 text-slate-300 hover:bg-white/14 border border-white/8'
                 }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Link2 className="w-4 h-4" />}
-              <span className="hidden sm:inline">{copied ? 'Copiado' : 'Link'}</span>
+              <span className="hidden sm:inline">{copied ? 'Copied' : 'Link'}</span>
             </button>
             <button
               onClick={() => setPickerOpen(true)}
@@ -137,7 +137,7 @@ export default function App() {
               onMouseLeave={e => (e.currentTarget.style.background = '#7c3aed')}
             >
               <Plus className="w-4 h-4" />
-              <span className="hidden sm:inline">Som</span>
+              <span className="hidden sm:inline">Sound</span>
             </button>
           </div>
         </div>
@@ -162,7 +162,7 @@ export default function App() {
               onChange={e => setMasterVolume(Number(e.target.value))}
               className="flex-1 h-1.5 cursor-pointer rounded-full"
               style={{ accentColor: 'var(--color-primary)' }}
-              aria-label="Volume master"
+              aria-label="Master volume"
             />
           </div>
 
@@ -190,7 +190,7 @@ export default function App() {
                 </span>
                 <button
                   onClick={() => setSleepSecondsLeft(null)}
-                  title="Cancelar timer"
+                  title="Cancel timer"
                   className="p-1 rounded-md cursor-pointer text-slate-500 hover:text-slate-300 transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export default function App() {
 
       <footer className="relative z-10 border-t border-white/5 py-5 px-4">
         <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
-          <span>Feito para sessões de foco e relaxamento</span>
+          <span>Made for focus and relaxation sessions</span>
           <div className="flex items-center gap-3">
             <a
               href="https://ko-fi.com/ambientflow"

@@ -15,7 +15,7 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
 
   const handleDelete = (e: React.MouseEvent, preset: Preset) => {
     e.stopPropagation()
-    if (window.confirm(`Remover o preset "${preset.name}"?`)) {
+    if (window.confirm(`Remove preset "${preset.name}"?`)) {
       onDelete(preset.id)
     }
   }
@@ -29,10 +29,10 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
         <button
           onClick={onSave}
           disabled={!hasChannels || atLimit}
-          title={atLimit ? `Limite de ${MAX_PRESETS} presets atingido` : undefined}
+          title={atLimit ? `${MAX_PRESETS} preset limit reached` : undefined}
           className="text-xs px-3 py-1.5 rounded-lg bg-white/8 text-slate-300 hover:bg-white/14 transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-white/6 hover:border-white/12"
         >
-          + Salvar mix
+          + Save mix
         </button>
         {atLimit && (
           <span className="text-xs text-slate-500">
@@ -42,7 +42,7 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
       </div>
 
       {presets.length === 0 ? (
-        <p className="text-sm text-slate-600">Nenhum preset salvo ainda.</p>
+        <p className="text-sm text-slate-600">No presets saved yet.</p>
       ) : (
         <div className="flex gap-2 overflow-x-auto pb-1">
           {presets.map(preset => (
@@ -59,7 +59,7 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
               <button
                 onClick={e => handleDelete(e, preset)}
                 className="w-5 h-5 ml-0.5 flex items-center justify-center rounded-full text-slate-500 hover:bg-red-900/50 hover:text-red-400 transition-colors cursor-pointer"
-                aria-label={`Remover preset ${preset.name}`}
+                aria-label={`Remove preset ${preset.name}`}
               >
                 <X className="w-3 h-3" />
               </button>

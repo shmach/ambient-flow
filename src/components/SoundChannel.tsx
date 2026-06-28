@@ -62,7 +62,7 @@ export function SoundChannel({ soundId, ensureContext }: Props) {
           channel.playing ? 'opacity-100' : 'opacity-35'
         }`}
         style={{ accentColor: 'var(--color-primary)' }}
-        aria-label={`Volume de ${sound.name}`}
+        aria-label={`${sound.name} volume`}
       />
 
       <div className="flex gap-2 w-full">
@@ -73,17 +73,17 @@ export function SoundChannel({ soundId, ensureContext }: Props) {
               ? 'bg-primary text-white hover:bg-primary-dark'
               : 'bg-white/8 text-slate-300 hover:bg-white/15'
           }`}
-          aria-label={channel.playing ? `Pausar ${sound.name}` : `Tocar ${sound.name}`}
+          aria-label={channel.playing ? `Pause ${sound.name}` : `Play ${sound.name}`}
         >
           {channel.playing
-            ? <><Pause className="w-3.5 h-3.5" /> Pausar</>
-            : <><Play  className="w-3.5 h-3.5" /> Tocar</>
+            ? <><Pause className="w-3.5 h-3.5" /> Pause</>
+            : <><Play  className="w-3.5 h-3.5" /> Play</>
           }
         </button>
         <button
           onClick={() => removeChannel(soundId)}
           className="w-9 flex items-center justify-center rounded-lg bg-white/8 text-slate-400 hover:bg-red-900/40 hover:text-red-400 transition-colors cursor-pointer"
-          aria-label={`Remover ${sound.name}`}
+          aria-label={`Remove ${sound.name}`}
         >
           <X className="w-4 h-4" />
         </button>

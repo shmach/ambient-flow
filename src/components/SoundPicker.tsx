@@ -3,7 +3,7 @@ import { SOUNDS, type SoundCategory } from '../lib/sounds'
 import { useMixerStore } from '../store/mixer'
 import { SoundIcon } from './SoundIcon'
 
-const CATEGORIES: SoundCategory[] = ['Natureza', 'Aconchego', 'Urbano', 'Foco']
+const CATEGORIES: SoundCategory[] = ['Nature', 'Cozy', 'Urban', 'Focus']
 
 interface Props {
   open: boolean
@@ -40,11 +40,11 @@ export function SoundPicker({ open, onClose, ensureContext }: Props) {
         </div>
 
         <div className="flex items-center justify-between px-5 py-3 shrink-0">
-          <h2 className="text-lg font-semibold text-white">Adicionar som</h2>
+          <h2 className="text-lg font-semibold text-white">Add Sound</h2>
           <button
             onClick={onClose}
             className="w-8 h-8 flex items-center justify-center rounded-full bg-white/8 text-slate-400 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
-            aria-label="Fechar"
+            aria-label="Close"
           >
             <X className="w-4 h-4" />
           </button>
@@ -52,7 +52,7 @@ export function SoundPicker({ open, onClose, ensureContext }: Props) {
 
         {atLimit && (
           <p className="mx-5 mb-1 shrink-0 text-xs text-amber-400 bg-amber-400/10 rounded-lg px-3 py-2">
-            Limite de 6 canais atingido. Remova um canal para adicionar outro.
+            6-channel limit reached. Remove a channel to add another.
           </p>
         )}
 

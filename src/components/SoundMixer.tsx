@@ -27,9 +27,9 @@ export function SoundMixer({ ensureContext, onOpenPicker }: Props) {
         </div>
 
         <div className="text-center space-y-1.5">
-          <p className="text-white font-semibold text-lg">Seu mix está esperando</p>
+          <p className="text-white font-semibold text-lg">Your mix is waiting</p>
           <p className="text-slate-500 text-sm">
-            Combine sons para criar o ambiente perfeito
+            Combine sounds to create the perfect atmosphere
           </p>
         </div>
 
@@ -41,7 +41,7 @@ export function SoundMixer({ ensureContext, onOpenPicker }: Props) {
           onMouseLeave={e => (e.currentTarget.style.background = '#7c3aed')}
         >
           <Plus className="w-4 h-4" />
-          Escolher sons
+          Browse sounds
         </button>
       </div>
     )
