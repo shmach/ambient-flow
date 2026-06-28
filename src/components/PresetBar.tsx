@@ -1,6 +1,6 @@
 import { X } from 'lucide-react'
 import { useMixerStore } from '../store/mixer'
-import { type Preset } from '../hooks/usePresets'
+import { type Preset, MAX_PRESETS } from '../hooks/usePresets'
 
 interface Props {
   presets: Preset[]
@@ -11,6 +11,7 @@ interface Props {
 
 export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
   const hasChannels = useMixerStore(s => s.channels.length > 0)
+  const atLimit = presets.length >= MAX_PRESETS
 
   const handleDelete = (e: React.MouseEvent, preset: Preset) => {
     e.stopPropagation()
@@ -27,11 +28,17 @@ export function PresetBar({ presets, onLoad, onDelete, onSave }: Props) {
         </h2>
         <button
           onClick={onSave}
-          disabled={!hasChannels}
+          disabled={!hasChannels || atLimit}
+          title={atLimit ? `Limite de ${MAX_PRESETS} presets atingido` : undefined}
           className="text-xs px-3 py-1.5 rounded-lg bg-white/8 text-slate-300 hover:bg-white/14 transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer border border-white/6 hover:border-white/12"
         >
           + Salvar mix
         </button>
+        {atLimit && (
+          <span className="text-xs text-slate-500">
+            {MAX_PRESETS}/{MAX_PRESETS} presets
+          </span>
+        )}
       </div>
 
       {presets.length === 0 ? (

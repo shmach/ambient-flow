@@ -11,8 +11,9 @@ export interface Preset {
   channels: PresetChannel[]
 }
 
-const STORAGE_KEY    = 'ambientflow_presets'
+const STORAGE_KEY     = 'ambientflow_presets'
 const INITIALIZED_KEY = 'ambientflow_initialized'
+export const MAX_PRESETS = 6
 
 const DEFAULT_PRESETS: Preset[] = [
   {
@@ -56,14 +57,17 @@ export function usePresets() {
     return readStorage()
   })
 
-  const save = useCallback((name: string, channels: PresetChannel[]): Preset => {
-    const preset: Preset = { id: `preset-${Date.now()}`, name, channels }
+  const save = useCallback((name: string, channels: PresetChannel[]): Preset | null => {
+    let created: Preset | null = null
     setPresets(prev => {
+      if (prev.length >= MAX_PRESETS) return prev
+      const preset: Preset = { id: `preset-${Date.now()}`, name, channels }
+      created = preset
       const next = [...prev, preset]
       writeStorage(next)
       return next
     })
-    return preset
+    return created
   }, [])
 
   const remove = useCallback((id: string) => {
