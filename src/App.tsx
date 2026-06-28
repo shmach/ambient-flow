@@ -4,6 +4,7 @@ import { useAudioEngine } from './hooks/useAudioEngine'
 import { usePresets, type Preset } from './hooks/usePresets'
 import { useMixerStore } from './store/mixer'
 import { encodeMix, decodeMix } from './lib/shareUrl'
+import { randomFooterMessage } from './lib/footerMessages'
 import { SoundMixer } from './components/SoundMixer'
 import { SoundPicker } from './components/SoundPicker'
 import { PresetBar } from './components/PresetBar'
@@ -27,6 +28,7 @@ export default function App() {
   const [saveModalOpen, setSaveModalOpen] = useState(false)
   const [copied, setCopied] = useState(false)
   const [sleepSecondsLeft, setSleepSecondsLeft] = useState<number | null>(null)
+  const [footerMessage] = useState(randomFooterMessage)
 
   const masterVolume = useMixerStore(s => s.masterVolume)
   const setMasterVolume = useMixerStore(s => s.setMasterVolume)
@@ -210,18 +212,16 @@ export default function App() {
 
       <footer className="relative z-10 border-t border-white/5 py-5 px-4">
         <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
-          <span>Made for focus and relaxation sessions</span>
-          <div className="flex items-center gap-3">
-            <a
-              href="https://ko-fi.com/ambientflow"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
-            >
-              <Coffee className="w-4 h-4" />
-              <span>Ko-fi</span>
-            </a>
-          </div>
+          <span className="italic">{footerMessage}</span>
+          <a
+            href="https://ko-fi.com/ambientflow"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors shrink-0"
+          >
+            <Coffee className="w-4 h-4" />
+            <span>Support on Ko-fi</span>
+          </a>
         </div>
       </footer>
 
